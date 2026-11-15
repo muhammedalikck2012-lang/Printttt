@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>İlkay'a Özel</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:linear-gradient(135deg,#ff6b9d,#ffa8c5,#8b5cf6);height:100vh;display:flex;justify-content:center;align-items:center;font-family:Arial,sans-serif;overflow:hidden}
+.container{text-align:center}
+.envelope{width:300px;height:200px;background:#f43f5e;position:relative;margin:0 auto;cursor:pointer;border-radius:10px;box-shadow:0 20px 40px rgba(0,0,0,.3)}
+.envelope:before{content:"";position:absolute;top:0;left:0;width:0;height:0;border-left:150px solid transparent;border-right:150px solid transparent;border-top:100px solid #fb7185;transform-origin:top;transition:.7s;z-index:4}
+.envelope.open:before{transform:rotateX(180deg);z-index:1}
+.letter{position:absolute;top:10px;left:10px;right:10px;bottom:10px;background:white;border-radius:5px;display:flex;justify-content:center;align-items:center;font-size:60px;transition:.7s;z-index:2}
+.envelope.open .letter{transform:translateY(-100px)}
+p{color:white;font-size:20px;margin-top:15px}
+.message{display:none;max-width:340px;margin:20px auto;background:white;padding:20px;border-radius:15px;color:#333;line-height:1.6}
+.message h1{color:#f43f5e;font-size:26px;margin-bottom:10px}
+.message p{color:#333;font-size:16px;margin-top:10px}
+.floating{position:absolute;bottom:-30px;animation:fly 5s linear forwards;pointer-events:none}
+@keyframes fly{to{transform:translateY(-110vh) rotate(360deg);opacity:0}}
+</style>
+</head>
+<body>
+<div class="container" id="start">
+<div class="envelope" id="envelope" onclick="openLetter()">
+<div class="letter">💌</div>
+</div>
+<p>Sana küçük bir sürprizim var<br>Açmak için zarfa dokun</p>
+</div>
+<div class="message" id="message">
+<h1>İYİ Kİ DOĞDUN İLKAY! ❤️</h1>
+<p>İyi ki. Nice mutlu yaşlara.Doğum günün kutlu olsun, iyi ki doğmuşsun! 🎂🎈</p>
+</div>
+<script>
+function openLetter(){
+document.getElementById("envelope").classList.add("open");
+setTimeout(()=>{
+document.getElementById("start").style.display="none";
+document.getElementById("message").style.display="block";
+},700);
+setInterval(()=>{
+const heart=document.createElement("div");
+heart.className="floating";
+heart.innerHTML="❤️";
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(15+Math.random()*25)+"px";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),5000);
+},300);
+}
+</script>
+</body>
+</html>
